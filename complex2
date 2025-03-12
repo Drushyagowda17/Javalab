@@ -1,0 +1,137 @@
+Let's analyze the complete code with addition, subtraction, multiplication, and division of complex numbers:
+
+Code:
+
+package complexNum;
+
+class Complex {
+    double real, imaginary;
+
+    public Complex(double real, double imag) {
+        this.real = real;
+        this.imaginary = imag;
+    }
+
+    public void display() {
+        System.out.println(this.real + " + " + this.imaginary + "i");
+    }
+
+    // Addition
+    public Complex add(Complex c) {
+        return new Complex(this.real + c.real, this.imaginary + c.imaginary);
+    }
+
+    // Subtraction
+    public Complex subtract(Complex c) {
+        return new Complex(this.real - c.real, this.imaginary - c.imaginary);
+    }
+
+    // Multiplication
+    public Complex multiply(Complex c) {
+        double realPart = this.real * c.real - this.imaginary * c.imaginary;
+        double imaginaryPart = this.real * c.imaginary + this.imaginary * c.real;
+        return new Complex(realPart, imaginaryPart);
+    }
+
+    // Division
+    public Complex divide(Complex c) {
+        double denominator = c.real * c.real + c.imaginary * c.imaginary;
+        double realPart = (this.real * c.real + this.imaginary * c.imaginary) / denominator;
+        double imaginaryPart = (this.imaginary * c.real - this.real * c.imaginary) / denominator;
+        return new Complex(realPart, imaginaryPart);
+    }
+}
+
+public class CompNum {
+    public static void main(String[] args) {
+        Complex c1 = new Complex(4, 5);
+        Complex c2 = new Complex(2, -3);
+
+        System.out.print("Addition: ");
+        Complex resultAdd = c1.add(c2);
+        resultAdd.display();
+
+        System.out.print("Subtraction: ");
+        Complex resultSub = c1.subtract(c2);
+        resultSub.display();
+
+        System.out.print("Multiplication: ");
+        Complex resultMul = c1.multiply(c2);
+        resultMul.display();
+
+        System.out.print("Division: ");
+        Complex resultDiv = c1.divide(c2);
+        resultDiv.display();
+    }
+}
+
+
+---
+
+Step-by-Step Execution:
+
+Given:
+
+c1 = (4 + 5i)
+
+c2 = (2 - 3i)
+
+
+1. Addition:
+
+(4 + 5i) + (2 - 3i) = (4+2) + (5+(-3))i = 6 + 2i
+
+Addition: 6.0 + 2.0i
+
+
+---
+
+2. Subtraction:
+
+(4 + 5i) - (2 - 3i) = (4-2) + (5 - (-3))i = 2 + 8i
+
+Subtraction: 2.0 + 8.0i
+
+
+---
+
+3. Multiplication:
+
+(4 + 5i) * (2 - 3i) = (4*2 - 5*(-3)) + (4*(-3) + 5*2)i
+
+= (8 + 15) + (-12 + 10)i = 23 + (-2)i = 23 - 2i ] Output:
+
+Multiplication: 23.0 - 2.0i
+
+
+---
+
+4. Division:
+
+Using the formula:
+
+\frac{(a+bi)}{(c+di)} = \frac{(a+bi) \cdot (c-di)}{c^2 + d^2}
+
+\frac{(4 + 5i)}{(2 - 3i)}
+
+2^2 + (-3)^2 = 4 + 9 = 13
+
+(4*2 + 5*(-3)) + (5*2 - 4*(-3))i
+
+= (8 - 15) + (10 + 12)i = -7 + 22i ] Final result:
+
+\frac{-7}{13} + \frac{22}{13}i = -0.538 + 1.692i
+
+Division: -0.5384615384615384 + 1.6923076923076923i
+
+
+---
+
+Final Output:
+
+Addition: 6.0 + 2.0i
+Subtraction: 2.0 + 8.0i
+Multiplication: 23.0 - 2.0i
+Division: -0.5384615384615384 + 1.6923076923076923i
+
+This is how Java evaluates the complex number operations. Let me know if you need further explanations!
