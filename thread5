@@ -24,7 +24,7 @@ name) {
  notifyAll(); 
  }
 }
-// Thread class representing a bank customer
+
 class Customer extends Thread {
  private BankAccount account;
  private int amount;
@@ -60,7 +60,7 @@ false);
 1000, "Charlie", true);
  c1.start();
  c2.start();
- // Allow some time before deposit happens
+ 
  try {
  Thread.sleep(2000);
  } catch (InterruptedException e) {
