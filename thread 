@@ -1,17 +1,16 @@
 class MyThread extends Thread {
- private volatile boolean suspended = false; // Flag
-for suspension
- private volatile boolean stopped = false; // Flag for
-stopping
+ private volatile boolean suspended = false; 
+
+ private volatile boolean stopped = false; l
  public void run() {
  synchronized (this) {
  while (!stopped) {
  try {
- // Wait if the thread is suspended
+
  while (suspended) {
  wait();
  }
- // Simulate work
+ 
 System.out.println(Thread.currentThread().getName() +
 " is running...");
  Thread.sleep(1000);
@@ -26,16 +25,16 @@ System.out.println(Thread.currentThread().getName() +
 " stopped.");
  }
  }
- // Method to suspend the thread
+ 
  public void suspendThread() {
  suspended = true;
  }
- // Method to resume the thread
+ 
  public synchronized void resumeThread() {
  suspended = false;
  notify(); // Notify waiting thread
  }
- // Method to stop the thread
+ 
  public void stopThread() {
  stopped = true;
  }
@@ -46,7 +45,7 @@ public class ThreadControlDemo {
  MyThread t1 = new MyThread();
  t1.start();
  try {
- // Allow thread to run for 3 seconds
+ 
  Thread.sleep(3000);
  
  System.out.println("Suspending thread...");
