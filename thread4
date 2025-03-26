@@ -19,7 +19,7 @@ withdraw " + amount + " but insufficient balance.");
  }
  }
 }
-// Thread class representing a bank customer
+
 class Customer extends Thread {
  private BankAccount account;
  private int amount;
@@ -34,18 +34,17 @@ public void run() {
 Thread.currentThread().getName());
  }
 }
-// Main class
+
 public class TS {
  public static void main(String[] args) {
  BankAccount account = new BankAccount();
- // Creating multiple threads accessing the same
-bank account
+ 
  Customer c1 = new Customer(account, 700,
 "Alice");
  Customer c2 = new Customer(account, 500, "Bob");
  Customer c3 = new Customer(account, 400,
 "Charlie");
- // Start the threads
+
  c1.start();
  c2.start();
  c3.start();
