@@ -1,13 +1,12 @@
 class BankAccount {
- private int balance = 1000; // Initial balance
- // Synchronized method for withdrawal
+ private int balance = 1000; 
  public synchronized void withdraw(int amount,
 String name) {
 while (balance < amount) {
  System.out.println(name + " is waiting to
 withdraw " + amount + " due to insufficient balance.");
  try {
- wait(); // Wait for a deposit
+ wait(); 
  } catch (InterruptedException e) {
  System.out.println(e);
  }
@@ -16,14 +15,13 @@ withdraw " + amount + " due to insufficient balance.");
  System.out.println(name + " successfully withdrew "
 + amount + ". Remaining balance: " + balance);
  }
- // Synchronized method for deposit
+ 
  public synchronized void deposit(int amount, String
 name) {
  balance += amount;
  System.out.println(name + " deposited " + amount +
 ". Updated balance: " + balance);
- notifyAll(); // Notify waiting threads that funds are
-available
+ notifyAll(); 
  }
 }
 // Thread class representing a bank customer
@@ -48,19 +46,18 @@ Thread.currentThread().getName());
  }
  }
 }
-// Main class
+
 public class ThreadWaitNotifyDemo {
  public static void main(String[] args) {
  BankAccount account = new BankAccount();
- // Customers trying to withdraw money
+ 
  Customer c1 = new Customer(account, 1200,
 "Alice", false);
  Customer c2 = new Customer(account, 500, "Bob",
 false);
- // Depositor adding funds
+
  Customer depositor = new Customer(account,
 1000, "Charlie", true);
-// Start withdrawal threads first
  c1.start();
  c2.start();
  // Allow some time before deposit happens
@@ -69,7 +66,7 @@ false);
  } catch (InterruptedException e) {
  System.out.println(e);
  }
- // Start deposit thread
+
  depositor.start();
  }
 }
