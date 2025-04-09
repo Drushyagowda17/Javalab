@@ -1,0 +1,109 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class CompleteSwingApp {
+ public static void main(String[] args) {
+ 
+ JFrame frame = new JFrame("Complete Swing
+Application");
+ frame.setSize(500, 500);
+ 
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CL
+OSE);
+ frame.setLayout(null);
+ 
+ JLabel userLabel = new JLabel("Username:");
+ userLabel.setBounds(20, 20, 80, 25);
+ JTextField userText = new JTextField();
+ userText.setBounds(120, 20, 150, 25);
+ JLabel passLabel = new JLabel("Password:");
+passLabel.setBounds(20, 60, 80, 25);
+ JPasswordField passText = new JPasswordField();
+ passText.setBounds(120, 60, 150, 25);
+ JButton loginButton = new JButton("Login");
+ loginButton.setBounds(120, 100, 80, 30);
+ 
+ JLabel genderLabel = new JLabel("Gender:");
+ genderLabel.setBounds(20, 140, 80, 25);
+ JRadioButton male = new JRadioButton("Male");
+ JRadioButton female = new
+JRadioButton("Female");
+ male.setBounds(120, 140, 70, 25);
+ female.setBounds(200, 140, 80, 25);
+ ButtonGroup genderGroup = new ButtonGroup();
+ genderGroup.add(male);
+ genderGroup.add(female);
+ 
+ JCheckBox agreeCheck = new JCheckBox("Accept
+Terms");
+ agreeCheck.setBounds(120, 180, 120, 25);
+ 
+ JLabel courseLabel = new JLabel("Course:");
+ courseLabel.setBounds(20, 220, 80, 25);
+ String[] courses = {"BCA", "BBA", "MCA", "MBA"};
+JComboBox<String> courseBox = new
+JComboBox<>(courses);
+ courseBox.setBounds(120, 220, 100, 25);
+ 
+ String[][] data = {{"1", "Alice", "A"}, {"2", "Bob", "B"},
+{"3", "Charlie", "C"}};
+ String[] columns = {"ID", "Name", "Grade"};
+ JTable table = new JTable(data, columns);
+ JScrollPane tableScroll = new JScrollPane(table);
+ tableScroll.setBounds(20, 260, 300, 70);
+ 
+ JProgressBar progressBar = new JProgressBar(0,
+100);
+ progressBar.setBounds(20, 350, 300, 30);
+ 
+ loginButton.addActionListener(e -> {
+ String username = userText.getText();
+ String password = new
+String(passText.getPassword());
+ if ("admin".equals(username) &&
+"1234".equals(password)) {
+ if (agreeCheck.isSelected()) {
+ 
+ String gender = male.isSelected() ? "Male" :
+"Female";
+String course = (String)
+courseBox.getSelectedItem();
+ JOptionPane.showMessageDialog(frame,
+"Login Successful!\nGender: " + gender + "\nCourse: " +
+course);
+ 
+ for (int i = 0; i <= 100; i += 10) {
+ try {
+ Thread.sleep(200);
+ progressBar.setValue(i);
+ } catch (InterruptedException ex) {
+ ex.printStackTrace();
+ }
+ }
+ } else {
+ JOptionPane.showMessageDialog(frame,
+"Please accept the terms.");
+ }
+ } else {
+ JOptionPane.showMessageDialog(frame,
+"Invalid Username or Password.");
+ }
+ });
+ // Add Components
+ frame.add(userLabel);
+ frame.add(userText);
+ frame.add(passLabel);
+frame.add(passText);
+ frame.add(loginButton);
+ frame.add(genderLabel);
+ frame.add(male);
+ frame.add(female);
+ frame.add(agreeCheck);
+ frame.add(courseLabel);
+ frame.add(courseBox);
+ frame.add(tableScroll);
+ frame.add(progressBar);
+ 
+ frame.setVisible(true);
+ }
+}
